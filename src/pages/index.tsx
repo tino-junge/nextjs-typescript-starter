@@ -30,11 +30,11 @@ export default function Home() {
         </h1>
 
         <Image
-          src="https://assets.vercel.com/image/upload/q_auto/front/zeit/og.png"
+          src="https://images.ctfassets.net/ra5kw4ubxdsf/1VrYSECQwT6p0hsvTEha4t/a0afa0a572eaa5a2b4b71f592d690a7d/IMG_4106.jpg"
           alt=""
           quality={50}
-          width={200}
-          height={200}
+          width={400}
+          height={400}
           layout="fixed"
           objectFit="contain"
           loader={sampleLoader}
