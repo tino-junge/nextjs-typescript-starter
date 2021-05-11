@@ -1,5 +1,20 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+
+type LoaderProps = { src: string; width?: number; quality?: number };
+
+const sampleLoader = ({ src, width, quality = 75 }: LoaderProps) => {
+  const url = new URL(src);
+  const params = url.searchParams;
+
+  // Override the existing parameters if some are set
+  params.set(`q`, quality.toString()); // Explicity set the quality
+  if (width) params.set(`w`, width.toString()); // If width is provided, set the width
+  params.set(`fm`, `webp`); // Force all images to webp
+
+  return `${url.origin}${url.pathname}?${params.toString()}`;
+};
 
 export default function Home() {
   return (
@@ -13,6 +28,17 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <Image
+          src="https://assets.vercel.com/image/upload/q_auto/front/zeit/og.png"
+          alt=""
+          quality={50}
+          width={200}
+          height={200}
+          layout="fixed"
+          objectFit="contain"
+          loader={sampleLoader}
+        />
 
         <p className={styles.description}>
           Get started by editing{` `}
